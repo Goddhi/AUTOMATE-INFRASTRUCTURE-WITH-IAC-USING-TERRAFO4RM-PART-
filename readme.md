@@ -1,4 +1,4 @@
-# Introducing Terraform-cloud to AUTOMATE-INFRASTRUCTURE-WITH-IAC-USING-TERRAFORM-PART-4 PROJECT
+# Introducing Terraform cloud to AUTOMATE INFRASTRUCTURE WITH IAC USING TERRAFORM Part 4 
 
 Table of Contents
 Introduction
