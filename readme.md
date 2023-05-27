@@ -393,8 +393,61 @@ Now let's create our ansible script to configure sonarqube, webserver and toolin
   - Install and configure Jenkins.
   - Configure our Nginx server to proxy_pass to our Webserver and tooling.
 
-- Here's a link to the ansible script Ansible script
+- Here's a link to the ansible script [Ansible script](https://github.com/Goddhi/source-code-AUTOMATE-INFRASTRUCTURE-WITH-IAC-USING-TERRAFORM-PART-4/tree/master/ansible-deploy-pbl-19)
+- We need to update the following:
+
+  - In the tooling and WordPress playbook we need to update the login_host for the setup_db.yml file to the rds endpoint.
+
+  - Also remember to update the password and username for the rds in the setup_db.yml file for the tooling and WordPress playbooks.
+
+   ![Database-onfig](Images/database-onfig.png)
+
+  - For the Nginx playbook we need to update the proxy_pass to the webserver and tooling.
+
+    ![nginx-onfig](Images/nginx-onfig.png)
+
+## Run ansible script
+  - Let's ssh into our bastion host and run the Ansible script.
+
+```
+ansible-inventory -i inventory/aws_ec2.yml --graph
+```
+
+![e2-plugin](Images/e2-plugin.png)
+
+
+Note: Ensure you have configured your AWS credentials in your Bastion host.
+
+- Now let's export the ansible config file.
+
+Note: remember to add your private key to ssh openserver
+
+```
+ssh-add <private key>
+```
+- Now let's run the ansible script.
+
+```
+ansible-playbook -i inventory/aws_ec2.yml playbooks/site.yml
+```
+Note: Upon deploying the instance for your wordpress site, you will need to update the database name, username and password in the wp-config.php file.
+
+```
+sudo nano /var/www/html/wp-config.php
+```
+- Let's navigate to our wordpress site and login to the admin page.
+
+```
+  wordpress.<your-domain>.<whatever>
+```
 
 
 
 
+
+
+
+
+
+
+Possible error while tryng to run the playbook using ansible dynami inventory is if the ec2 config file isnt well configured. install the python software that is compatible with the ec2 plugin.
